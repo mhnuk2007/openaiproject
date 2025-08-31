@@ -5,23 +5,23 @@ import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.ai.chat.model.ChatResponse;
-import org.springframework.ai.openai.OpenAiChatModel;
+import org.springframework.ai.ollama.OllamaChatModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class OpenAiController {
+public class OllamaController {
 
     private ChatClient chatClient;
 
-    public OpenAiController(OpenAiChatModel chatModel){
+    public OllamaController(OllamaChatModel chatModel){
         this.chatClient=ChatClient.create(chatModel);
     }
 
 //    ChatMemory chatMemory = MessageWindowChatMemory.builder().build();
-//    public OpenAiController(ChatClient.Builder builder){
+//    public OllamaController(ChatClient.Builder builder){
 //        this.chatClient = builder
 //                .defaultAdvisors(MessageChatMemoryAdvisor
 //                        .builder(chatMemory)
@@ -30,7 +30,7 @@ public class OpenAiController {
 //    }
 
 
-//    @GetMapping("/api/{message}")
+    @GetMapping("/api/{message}")
     public ResponseEntity<String> getAnswer(@PathVariable String message){
         ChatResponse chatResponse = chatClient
                 .prompt(message)
