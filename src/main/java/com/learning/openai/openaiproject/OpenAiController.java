@@ -5,11 +5,13 @@ import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.ai.chat.model.ChatResponse;
+import org.springframework.ai.chat.prompt.Prompt;
+import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 public class OpenAiController {
@@ -30,7 +32,7 @@ public class OpenAiController {
 //    }
 
 
-//    @GetMapping("/api/{message}")
+    @GetMapping("/api/{message}")
     public ResponseEntity<String> getAnswer(@PathVariable String message){
         ChatResponse chatResponse = chatClient
                 .prompt(message)
@@ -45,6 +47,32 @@ public class OpenAiController {
                 .getText();
 
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/api/recommend")
+    public String recommend(@RequestParam String type, @RequestParam String year, @RequestParam String language){
+
+        String tempt = """
+                I want to watch a {type} movie tonight with good ratings,
+                released in {year}, 
+                and in {language} language. 
+                Suggest me one specific movie and tell me cast and length of the movie.
+                """;
+
+        System.out.println(tempt);
+
+        PromptTemplate promptTemplate = new PromptTemplate(tempt);
+        Prompt prompt =promptTemplate.create(Map.of("type", type, "year", year, "language", language));
+
+        System.out.println("Prompt text: " + prompt.getInstructions());
+
+        String response = chatClient
+                .prompt(prompt)
+                .call()
+                .content();
+        return response;
+
+
     }
 
 

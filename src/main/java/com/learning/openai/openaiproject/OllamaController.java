@@ -30,7 +30,7 @@ public class OllamaController {
 //    }
 
 
-    @GetMapping("/api/{message}")
+    //@GetMapping("/api/{message}")
     public ResponseEntity<String> getAnswer(@PathVariable String message){
         ChatResponse chatResponse = chatClient
                 .prompt(message)
