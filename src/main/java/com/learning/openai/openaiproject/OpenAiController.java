@@ -1,9 +1,6 @@
 package com.learning.openai.openaiproject;
 
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
-import org.springframework.ai.chat.memory.ChatMemory;
-import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
@@ -25,6 +22,12 @@ public class OpenAiController {
     @Qualifier("openAiEmbeddingModel")
     private EmbeddingModel embeddingModel;
 
+    @GetMapping("api/hello")
+    public String greet(){
+        return "Hello world!";
+    }
+
+    @Autowired
     public OpenAiController(OpenAiChatModel chatModel){
         this.chatClient=ChatClient.create(chatModel);
     }
@@ -61,8 +64,8 @@ public class OpenAiController {
 
         String tempt = """
                 I want to watch a {type} movie tonight with good ratings,
-                released in {year}, 
-                and in {language} language. 
+                released in {year},
+                and in {language} language.
                 Suggest me one specific movie and tell me cast and length of the movie.
                 """;
 
@@ -83,6 +86,36 @@ public class OpenAiController {
     @PostMapping("/api/embedding")
     public float[] embedding(@RequestParam String text){
         return embeddingModel.embed(text);
+
+    }
+
+    @PostMapping("/api/similarity")
+    public double getSimilarity(@RequestParam String text1, @RequestParam String text2){
+
+        float[] embedding1 = embeddingModel.embed(text1);
+        float[] embedding2 = embeddingModel.embed(text2);
+
+
+        double dotProduct = 0.0;
+        double norm1 = 0.0;
+        double norm2 = 0.0;
+
+        for (int i = 0; i < embedding1.length; i++) {
+            dotProduct += embedding1[i] * embedding2[i];
+            norm1 += Math.pow(embedding1[i],2);
+            norm2 += Math.pow(embedding2[i],2);
+        }
+
+        double response =  (dotProduct / (Math.sqrt(norm1) * Math.sqrt(norm2)));
+
+        System.out.println("norm1: " + norm1);
+        System.out.println("norm2: " + norm2);
+        System.out.println("dotproduct: " + dotProduct);
+
+        System.out.println("response: " + response);
+
+        return response;
+
 
     }
 
