@@ -1,0 +1,239 @@
+Title: Wireless Mouse
+Description: Ergonomic wireless mouse with adjustable DPI
+Price: $19.99
+Category: Electronics
+Features: Bluetooth, USB-C, Silent Click
+
+Title: Gaming Keyboard
+Description: Mechanical RGB keyboard for gaming enthusiasts
+Price: $59.99
+Category: Electronics
+Features: RGB Lighting, Blue Switches, Anti-Ghosting
+
+Title: Noise Cancelling Headphones
+Description: Over-ear headphones with active noise cancellation
+Price: $89.99
+Category: Audio
+Features: ANC, Bluetooth 5.0, 30h Battery
+
+Title: Smartphone Stand
+Description: Adjustable aluminum stand for phones and tablets
+Price: $14.99
+Category: Accessories
+Features: Foldable, Anti-slip, Universal Fit
+
+Title: Portable SSD
+Description: 1TB USB 3.2 portable solid state drive
+Price: $109.99
+Category: Storage
+Features: Shockproof, Fast Transfer, Compact
+
+Title: Fitness Tracker
+Description: Waterproof fitness band with heart rate monitor
+Price: $39.99
+Category: Wearables
+Features: Sleep Tracking, Step Counter, OLED Display
+
+Title: Laptop Sleeve
+Description: Protective neoprene sleeve for 15-inch laptops
+Price: $17.99
+Category: Accessories
+Features: Water-resistant, Slim Fit, Zipper Closure
+
+Title: Bluetooth Speaker
+Description: Compact speaker with deep bass and stereo sound
+Price: $29.99
+Category: Audio
+Features: 360° Sound, Waterproof, 12h Playtime
+
+Title: Webcam 1080p
+Description: HD webcam with built-in microphone for video calls
+Price: $24.99
+Category: Electronics
+Features: Plug & Play, Wide Angle, Noise Reduction
+
+Title: USB-C Hub
+Description: Multiport adapter with HDMI, USB 3.0, and SD card reader
+Price: $34.99
+Category: Accessories
+Features: Aluminum Body, 4K Output, PD Charging
+
+Title: Wireless Charger
+Description: Fast wireless charging pad for Qi-enabled devices
+Price: $22.99
+Category: Electronics
+Features: 10W Output, LED Indicator, Slim Design
+
+Title: Smart Plug
+Description: Wi-Fi enabled plug with voice control support
+Price: $18.99
+Category: Smart Home
+Features: Alexa Compatible, Timer, Energy Monitor
+
+Title: LED Desk Lamp
+Description: Dimmable lamp with touch controls and USB charging
+Price: $26.99
+Category: Home Office
+Features: Adjustable Arm, Eye Protection, Timer
+
+Title: Electric Kettle
+Description: 1.7L stainless steel kettle with auto shut-off
+Price: $32.99
+Category: Kitchen
+Features: Boil-Dry Protection, Fast Heating, Cordless
+
+Title: Air Purifier
+Description: HEPA filter purifier for small rooms
+Price: $79.99
+Category: Home Appliances
+Features: Quiet Mode, Filter Indicator, Night Light
+
+Title: Smartwatch
+Description: Touchscreen smartwatch with fitness and notification features
+Price: $129.99
+Category: Wearables
+Features: GPS, Heart Rate, Waterproof
+
+Title: Laptop Stand
+Description: Adjustable stand for ergonomic laptop positioning
+Price: $21.99
+Category: Accessories
+Features: Aluminum, Ventilated, Foldable
+
+Title: Wireless Earbuds
+Description: True wireless earbuds with charging case
+Price: $49.99
+Category: Audio
+Features: Touch Controls, Noise Isolation, 20h Battery
+
+Title: Streaming Stick
+Description: HDMI streaming device with remote and voice control
+Price: $39.99
+Category: Media
+Features: 4K Support, Dual Band Wi-Fi, App Store
+
+Title: Smart Bulb
+Description: Color-changing LED bulb with app control
+Price: $12.99
+Category: Smart Home
+Features: 16M Colors, Scheduling, Voice Control
+
+Title: Digital Thermometer
+Description: Instant-read thermometer for kitchen and grill use
+Price: $11.99
+Category: Kitchen
+Features: Waterproof, LCD Display, Auto Shut-off
+
+Title: Smart Scale
+Description: Body composition scale with app sync and multiple profiles
+Price: $27.99
+Category: Health
+Features: Bluetooth, BMI Tracking, Multi-user
+
+Title: Mini Projector
+Description: Portable projector for movies and presentations
+Price: $89.99
+Category: Media
+Features: HD Output, HDMI, USB Support
+
+Title: Laptop Backpack
+Description: Water-resistant backpack with padded laptop compartment
+Price: $39.99
+Category: Accessories
+Features: USB Port, Anti-theft, Ergonomic Straps
+
+Title: Standing Desk Converter
+Description: Adjustable riser for sit-stand workstations
+Price: $74.99
+Category: Home Office
+Features: Gas Spring Lift, Foldable, Non-slip Base
+
+Title: Smart Doorbell
+Description: Video doorbell with motion detection and cloud storage
+Price: $99.99
+Category: Smart Home
+Features: HD Camera, Two-way Audio, Night Vision
+
+Title: Electric Toothbrush
+Description: Rechargeable toothbrush with multiple cleaning modes
+Price: $34.99
+Category: Health
+Features: Timer, Pressure Sensor, Travel Case
+
+Title: Cordless Drill
+Description: Power drill with variable speed and LED light
+Price: $49.99
+Category: Tools
+Features: Lithium Battery, 20V, Keyless Chuck
+
+Title: Pet Camera
+Description: Wi-Fi camera for monitoring pets remotely
+Price: $59.99
+Category: Smart Home
+Features: Two-way Audio, Treat Dispenser, Motion Alerts
+
+Title: Wireless Presenter
+Description: Laser pointer and slide controller for presentations
+Price: $19.99
+Category: Accessories
+Features: Plug & Play, Red Laser, Long Range
+
+Title: Smart Thermostat
+Description: Programmable thermostat with remote control
+Price: $129.99
+Category: Smart Home
+Features: Energy Saving, App Control, Scheduling
+
+Title: USB Microphone
+Description: Studio-quality mic for streaming and recording
+Price: $69.99
+Category: Audio
+Features: Cardioid Pattern, Plug & Play, Mute Button
+
+Title: Portable Monitor
+Description: 15.6-inch external display for laptops and gaming
+Price: $149.99
+Category: Electronics
+Features: Full HD, USB-C, Slim Design
+
+Title: Smart Lock
+Description: Keyless entry lock with fingerprint and app access
+Price: $139.99
+Category: Smart Home
+Features: Auto Lock, Remote Unlock, Tamper Alert
+
+Title: Robot Vacuum
+Description: Self-charging vacuum with smart mapping
+Price: $229.99
+Category: Home Appliances
+Features: Wi-Fi, Multi-surface, Voice Control
+
+Title: Dash Cam
+Description: Front and rear camera system for vehicles
+Price: $89.99
+Category: Automotive
+Features: Loop Recording, Night Vision, G-Sensor
+
+Title: Portable Blender
+Description: USB rechargeable blender for smoothies on the go
+Price: $24.99
+Category: Kitchen
+Features: 6 Blades, BPA-Free, Leakproof
+
+Title: Smart Mirror
+Description: LED mirror with weather, calendar, and voice assistant
+Price: $199.99
+Category: Smart Home
+Features: Touch Controls, Anti-fog, Bluetooth
+
+Title: Electric Screwdriver
+Description: Compact screwdriver with multiple bits and LED light
+Price: $29.99
+Category: Tools
+Features: Rechargeable, Torque Control, Magnetic Tip
+
+Title: UV Sanitizer Box
+Description: Portable box for disinfecting phones and accessories
+Price: $39.99
+Category: Health
+Features: UV-C Light, Timer, USB Powered

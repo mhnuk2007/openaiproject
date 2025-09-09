@@ -4,19 +4,26 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
+import org.springframework.ai.document.Document;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.openai.OpenAiChatModel;
+import org.springframework.ai.vectorstore.SearchRequest;
+import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin("http://localhost:5173/")
 public class OpenAiController {
 
     private ChatClient chatClient;
+    @Autowired
+    private VectorStore vectorStore;
 
     @Autowired
     @Qualifier("openAiEmbeddingModel")
@@ -67,12 +74,23 @@ public class OpenAiController {
                 released in {year},
                 and in {language} language.
                 Suggest me one specific movie and tell me cast and length of the movie.
+                
+                response format should be:
+                                1. Movie Name
+                                2. basic plot
+                                3. cast
+                                4. length
+                                5. IMDB rating
                 """;
 
         System.out.println(tempt);
 
         PromptTemplate promptTemplate = new PromptTemplate(tempt);
-        Prompt prompt =promptTemplate.create(Map.of("type", type, "year", year, "language", language));
+        Prompt prompt =promptTemplate.create(Map.of(
+                "type", type,
+                "year", year,
+                "language", language
+        ));
 
         System.out.println("Prompt text: " + prompt.getInstructions());
 
@@ -106,7 +124,7 @@ public class OpenAiController {
             norm2 += Math.pow(embedding2[i],2);
         }
 
-        double response =  (dotProduct / (Math.sqrt(norm1) * Math.sqrt(norm2)));
+        double response =  (dotProduct * 100 / (Math.sqrt(norm1) * Math.sqrt(norm2)));
 
         System.out.println("norm1: " + norm1);
         System.out.println("norm2: " + norm2);
@@ -117,6 +135,12 @@ public class OpenAiController {
         return response;
 
 
+    }
+
+    @PostMapping("/api/products")
+    public List<Document> getProduct(@RequestParam String text){
+        //return vectorStore.similaritySearch(text);
+        return vectorStore.similaritySearch(SearchRequest.builder().query(text).topK(2).build());
     }
 
 }
