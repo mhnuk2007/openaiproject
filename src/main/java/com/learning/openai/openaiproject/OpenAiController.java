@@ -30,13 +30,13 @@ public class OpenAiController {
     private EmbeddingModel embeddingModel;
 
     @GetMapping("api/hello")
-    public String greet(){
+    public String greet() {
         return "Hello world!";
     }
 
     @Autowired
-    public OpenAiController(OpenAiChatModel chatModel){
-        this.chatClient=ChatClient.create(chatModel);
+    public OpenAiController(OpenAiChatModel chatModel) {
+        this.chatClient = ChatClient.create(chatModel);
     }
 
 //    ChatMemory chatMemory = MessageWindowChatMemory.builder().build();
@@ -50,7 +50,7 @@ public class OpenAiController {
 
 
     @GetMapping("/api/{message}")
-    public ResponseEntity<String> getAnswer(@PathVariable String message){
+    public ResponseEntity<String> getAnswer(@PathVariable String message) {
         ChatResponse chatResponse = chatClient
                 .prompt(message)
                 .call()
@@ -67,7 +67,7 @@ public class OpenAiController {
     }
 
     @PostMapping("/api/recommend")
-    public String recommend(@RequestParam String type, @RequestParam String year, @RequestParam String language){
+    public String recommend(@RequestParam String type, @RequestParam String year, @RequestParam String language) {
 
         String tempt = """
                 I want to watch a {type} movie tonight with good ratings,
@@ -86,7 +86,7 @@ public class OpenAiController {
         System.out.println(tempt);
 
         PromptTemplate promptTemplate = new PromptTemplate(tempt);
-        Prompt prompt =promptTemplate.create(Map.of(
+        Prompt prompt = promptTemplate.create(Map.of(
                 "type", type,
                 "year", year,
                 "language", language
@@ -102,13 +102,13 @@ public class OpenAiController {
     }
 
     @PostMapping("/api/embedding")
-    public float[] embedding(@RequestParam String text){
+    public float[] embedding(@RequestParam String text) {
         return embeddingModel.embed(text);
 
     }
 
     @PostMapping("/api/similarity")
-    public double getSimilarity(@RequestParam String text1, @RequestParam String text2){
+    public double getSimilarity(@RequestParam String text1, @RequestParam String text2) {
 
         float[] embedding1 = embeddingModel.embed(text1);
         float[] embedding2 = embeddingModel.embed(text2);
@@ -120,11 +120,11 @@ public class OpenAiController {
 
         for (int i = 0; i < embedding1.length; i++) {
             dotProduct += embedding1[i] * embedding2[i];
-            norm1 += Math.pow(embedding1[i],2);
-            norm2 += Math.pow(embedding2[i],2);
+            norm1 += Math.pow(embedding1[i], 2);
+            norm2 += Math.pow(embedding2[i], 2);
         }
 
-        double response =  (dotProduct * 100 / (Math.sqrt(norm1) * Math.sqrt(norm2)));
+        double response = (dotProduct * 100 / (Math.sqrt(norm1) * Math.sqrt(norm2)));
 
         System.out.println("norm1: " + norm1);
         System.out.println("norm2: " + norm2);
@@ -138,9 +138,39 @@ public class OpenAiController {
     }
 
     @PostMapping("/api/products")
-    public List<Document> getProduct(@RequestParam String text){
+    public List<Document> getProduct(@RequestParam String text) {
         //return vectorStore.similaritySearch(text);
         return vectorStore.similaritySearch(SearchRequest.builder().query(text).topK(2).build());
+    }
+
+    @PostMapping("/api/rag")
+    public String ragAnswer(@RequestParam String query) {
+        // Step 1: Retrieve relevant documents
+        List<Document> contextDocs = vectorStore.similaritySearch(SearchRequest.builder()
+                .query(query)
+                .topK(3)
+                .build());
+
+        // Step 2: Combine retrieved content
+        StringBuilder contextBuilder = new StringBuilder();
+        for (Document doc : contextDocs) {
+            contextBuilder.append(doc.getText()).append("\n");
+        }
+
+        // Step 3: Inject into prompt
+        String ragPrompt = """
+        Based on the following product information:
+        %s
+        Answer the user's question: %s
+        """.formatted(contextBuilder.toString(), query);
+
+        // Step 4: Generate response
+        String response = chatClient
+                .prompt(ragPrompt)
+                .call()
+                .content();
+
+        return response;
     }
 
 }
