@@ -1,6 +1,7 @@
 package com.learning.openai.openaiproject;
 
 import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
@@ -171,6 +172,15 @@ public class OpenAiController {
                 .content();
 
         return response;
+    }
+
+    @PostMapping("/api/ask")
+    public String getAnswerUsingRag(@RequestParam String query){
+return chatClient
+        .prompt(query)
+        .advisors(new QuestionAnswerAdvisor(vectorStore))
+        .call()
+        .content();
     }
 
 }
